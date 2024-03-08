@@ -7,7 +7,7 @@ const routes = {
     lucio: '/rotas/1/Lucio'
 }
 
-export default function rotas() {
+export default function Rotas() {
 
     function navegacaoSimples(url) {
         router.push(url)

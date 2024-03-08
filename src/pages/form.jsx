@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-export default function form() {
+export default function Form() {
     const [nome, setNome] = useState('')
     const [idade, setIdade] = useState(0)
     const [usuarios, setUsuarios] = useState([])
@@ -27,7 +27,7 @@ export default function form() {
 
     return (
         <div>
-            <h1>'Integrando com API #02'</h1>
+            <h1>Integrando com API #02</h1>
             <input
                 value={nome}
                 type='text'
