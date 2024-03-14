@@ -1,8 +1,8 @@
 export default class PortaModel {
-    #numero: number
-    #temPresente: boolean
-    #selecionada: boolean
-    #aberta: boolean
+    private numero: number
+    private temPresente: boolean
+    private selecionada: boolean
+    private aberta: boolean
 
     constructor(
         numero: number,
@@ -10,29 +10,29 @@ export default class PortaModel {
         selecionada = false,
         aberta = false
     ) {
-        this.#numero= numero
-        this.#temPresente= temPresente
-        this.#selecionada = selecionada
-        this.#aberta = aberta
+        this.numero= numero
+        this.temPresente= temPresente
+        this.selecionada = selecionada
+        this.aberta = aberta
     }
 
-    get numero() {
-        return this.#numero
+    getNumero() {
+        return this.numero
     }
 
-    get temPresente() {
-        return this.#temPresente
+    getTemPresente() {
+        return this.temPresente
     }
 
-    get selecionada() {
-        return this.#selecionada
+    getSelecionada() {
+        return this.selecionada
     }
 
-    get aberta() {
-        return this.#aberta
+    getAberta() {
+        return this.aberta
     }
 
-    get fechada() {
+    getFechada() {
         return !this.aberta
     }
 

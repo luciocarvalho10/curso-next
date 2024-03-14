@@ -10,11 +10,11 @@ export function criarPortas(qtd: number, comPresente: number): PortaModel[] {
 
 export function atualizarPortas(portas: PortaModel[], portaModificada: PortaModel): PortaModel[] {
     return portas.map(porta => {
-        const igualAModificada = portaModificada.numero === porta.numero
+        const igualAModificada = portaModificada.getNumero() === porta.getNumero()
         if (igualAModificada) {
             return portaModificada
         } else {
-            return portaModificada.aberta ? porta : porta.desselecionar()
+            return portaModificada.getAberta() ? porta : porta.desselecionar()
         }
     })
 }
