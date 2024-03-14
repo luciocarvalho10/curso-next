@@ -3,12 +3,12 @@ import PortaModel from '@/model/PortaModel'
 
 import Presente from '@/components/Presente'
 
-interface PortaProps {
+interface IPortaProps {
     porta: PortaModel
     mudanca: (novaPorta: PortaModel) => void
 }
 
-export default function Porta(props: PortaProps) {
+export default function Porta(props: IPortaProps) {
     const {porta} = props
     const selecionada = porta?.selecionada && !porta.aberta ? styles.selecionada : ''
 
