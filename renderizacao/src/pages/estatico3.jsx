@@ -7,7 +7,7 @@ export function getStaticProps() {
     }
 }
 
-export default function Estatico2({ numero }) {
+export default function Estatico3({ numero }) {
     return (
         <div>
             <h1>Estático #3</h1>
