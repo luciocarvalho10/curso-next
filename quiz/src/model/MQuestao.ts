@@ -44,8 +44,8 @@ export default class MQuestao {
 	 * Get the enunciado value.
 	 *
 	 * @return {string} the enunciado value
-     *
-     * This code defines a function called getEnunciado that returns a string value. The function does not take any parameters.
+	 *
+	 * This code defines a function called getEnunciado that returns a string value. The function does not take any parameters.
 	 */
 	getEnunciado(): string {
 		return this.enunciado
@@ -55,8 +55,8 @@ export default class MQuestao {
 	 * Get the responses.
 	 *
 	 * @return {MResposta[]} The responses array.
-     *
-     * This code defines a function called getRespostas that returns an array of MResposta objects. The function does not take any parameters.
+	 *
+	 * This code defines a function called getRespostas that returns an array of MResposta objects. The function does not take any parameters.
 	 */
 	getRespostas(): MResposta[] {
 		return this.respostas
@@ -66,8 +66,8 @@ export default class MQuestao {
 	 * A description of the entire function.
 	 *
 	 * @return {boolean} description of return value
-     *
-     * This code defines a function called getAcertou that returns a boolean value. The function does not take any parameters.
+	 *
+	 * This code defines a function called getAcertou that returns a boolean value. The function does not take any parameters.
 	 */
 	getAcertou(): boolean {
 		return this.acertou
@@ -77,8 +77,8 @@ export default class MQuestao {
 	 * Returns true if any resposta in this.respostas is revealed, otherwise returns false.
 	 *
 	 * @return {boolean} true if any resposta is revealed, otherwise false
-     *
-     * This code defines a function called getRepondida that returns a boolean value. The function does not take any parameters.
+	 *
+	 * This code defines a function called getRepondida that returns a boolean value. The function does not take any parameters.
 	 */
 	getRepondida(): boolean {
 		for (let resposta of this.respostas) {
@@ -87,12 +87,21 @@ export default class MQuestao {
 		return false
 	}
 
-    paraObjeto(){
-        return {
-            id: this.getId(),
-            enunciado: this.getEnunciado(),
-            respostas: this.respostas.map(resposta => resposta.paraObjeto()),
-            acertou: this.getAcertou()
-        }
-    }
+	/**
+	 * Returns an object with id, enunciado, respostas, and acertou properties.
+	 *
+	 * @return {object} The object containing id, enunciado, respostas, and acertou properties.
+	 */
+
+	// Nesse projeto funciona sem o paraObjetos
+	paraObjeto() {
+		return {
+			id: this.getId(),
+			enunciado: this.getEnunciado(),
+			respostas: this.getRespostas(),
+			acertou: this.getAcertou(),
+			// Não funciona
+			// respostas: this.respostas.map(resposta => resposta.paraObjeto()),
+		}
+	}
 }

@@ -80,6 +80,13 @@ export default class MResposta {
         return this.revelada
     }
 
+    /**
+     * A function that generates an object with the properties valor, certa, and revelada.
+     *
+     * @return {object} An object with the properties valor, certa, and revelada
+     */
+
+    // Nesse projeto funciona sem o paraObjetos
     paraObjetos() {
         return {
             valor: this.getValor(),
