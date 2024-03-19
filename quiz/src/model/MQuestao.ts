@@ -54,11 +54,11 @@ export default class MQuestao {
 	/**
 	 * Get the responses.
 	 *
-	 * @return {any[]} The responses array.
+	 * @return {MResposta[]} The responses array.
      *
      * This code defines a function called getRespostas that returns an array of MResposta objects. The function does not take any parameters.
 	 */
-	getRespostas(): any[] {
+	getRespostas(): MResposta[] {
 		return this.respostas
 	}
 
@@ -86,4 +86,13 @@ export default class MQuestao {
 		}
 		return false
 	}
+
+    paraObjeto(){
+        return {
+            id: this.getId(),
+            enunciado: this.getEnunciado(),
+            respostas: this.respostas.map(resposta => resposta.paraObjeto()),
+            acertou: this.getAcertou()
+        }
+    }
 }

@@ -1,7 +1,7 @@
 export default class MResposta {
     private valor: string
     private certa: boolean
-    pirvate revelada: boolean
+    private revelada: boolean
 
     /**
      * Constructor for creating a new instance of the class.
@@ -14,12 +14,36 @@ export default class MResposta {
      */
     constructor(
         valor: string,
-        certa: boolean
+        certa: boolean,
         revelada = false
     ) {
         this.valor = valor
         this.certa = certa
         this.revelada = revelada
+    }
+
+    /**
+     * Creates a new MResposta object with the given valor and sets its status to true.
+     *
+     * @param {string} valor - the value to be set in the MResposta object
+     * @return {MResposta} the newly created MResposta object
+     *
+     * This code defines a function called certa that takes in a string value and returns a MResposta object. The function sets the 'certa' property of the object to true.
+     */
+    static certa(valor: string): MResposta {
+        return new MResposta(valor, true)
+    }
+
+    /**
+     * A description of the entire function.
+     *
+     * @param {string} valor - description of parameter
+     * @return {MResposta} description of return value
+     *
+     * This code defines a function called errada that takes in a string value and returns a MResposta object. The function sets the 'certa' property of the object to false.
+     */
+    static errada(valor: string): MResposta {
+        return new MResposta(valor, false)
     }
 
 
@@ -56,4 +80,11 @@ export default class MResposta {
         return this.revelada
     }
 
+    paraObjetos() {
+        return {
+            valor: this.getValor(),
+            certa: this.getCerta(),
+            revelada: this.getRevelada()
+        }
+    }
 }
