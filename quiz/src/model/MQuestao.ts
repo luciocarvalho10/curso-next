@@ -1,5 +1,9 @@
+import { embaralhar } from "@/functions/arrays"
 import MResposta from '@/model/MResposta'
 
+/**
+ * Uma classe que representa uma questão em um quiz.
+ */
 export default class MQuestao {
 	private id: number
 	private enunciado: string
@@ -7,14 +11,14 @@ export default class MQuestao {
 	private acertou: boolean
 
 	/**
-	 * A constructor for initializing the id, enunciado, respostas, and acertou properties.
+	 * Construtor para inicializar as propriedades id, enunciado, respostas e acertou.
 	 *
-	 * @param {number} id - the id for the object
-	 * @param {string} enunciado - the statement/question description
-	 * @param {MResposta[]} respostas - an array of possible answers
-	 * @param {boolean} acertou - indicates if the answer is correct (default is false)
+	 * @param {number} id - o id da questão
+	 * @param {string} enunciado - a descrição/pergunta do enunciado
+	 * @param {MResposta[]} respostas - um array de possíveis respostas
+	 * @param {boolean} acertou - indica se a resposta está correta (padrão é false)
 	 *
-	 * This code snippet is a TypeScript constructor function that initializes the properties of an object. It takes in four parameters: id (a number), enunciado (a string), respostas (an array of MResposta objects), and acertou (a boolean with a default value of false). The constructor assigns these values to the corresponding properties of the object.
+	 * Este trecho de código é uma função construtora em TypeScript que inicializa as propriedades de um objeto. Ela recebe quatro parâmetros: id (um número), enunciado (uma string), respostas (um array de objetos MResposta) e acertou (um booleano com um valor padrão de false). A função atribui esses valores às respectivas propriedades do objeto.
 	 */
 	constructor(
 		id: number,
@@ -29,56 +33,55 @@ export default class MQuestao {
 	}
 
 	/**
-	 * A description of the entire function.
+	 * Retorna o id da questão.
 	 *
-	 * @param {type} paramName - description of parameter
-	 * @return {type} description of return value
+	 * @return {number} O id da questão.
 	 *
-	 * This code defines a function called getId that returns a number value. The function does not take any parameters.
+	 * Este trecho de código define uma função chamada getId que retorna um valor numérico. A função não recebe nenhum parâmetro.
 	 */
 	getId(): number {
 		return this.id
 	}
 
 	/**
-	 * Get the enunciado value.
+	 * Retorna o enunciado da questão.
 	 *
-	 * @return {string} the enunciado value
+	 * @return {string} O enunciado da questão.
 	 *
-	 * This code defines a function called getEnunciado that returns a string value. The function does not take any parameters.
+	 * Este trecho de código define uma função chamada getEnunciado que retorna um valor string. A função não recebe nenhum parâmetro.
 	 */
 	getEnunciado(): string {
 		return this.enunciado
 	}
 
 	/**
-	 * Get the responses.
+	 * Retorna o array de respostas da questão.
 	 *
-	 * @return {MResposta[]} The responses array.
+	 * @return {MResposta[]} O array de respostas da questão.
 	 *
-	 * This code defines a function called getRespostas that returns an array of MResposta objects. The function does not take any parameters.
+	 * Este trecho de código define uma função chamada getRespostas que retorna um array de objetos MResposta. A função não recebe nenhum parâmetro.
 	 */
 	getRespostas(): MResposta[] {
 		return this.respostas
 	}
 
 	/**
-	 * A description of the entire function.
+	 * Retorna se a questão foi respondida corretamente.
 	 *
-	 * @return {boolean} description of return value
+	 * @return {boolean} True se a questão foi respondida corretamente, caso contrário, false.
 	 *
-	 * This code defines a function called getAcertou that returns a boolean value. The function does not take any parameters.
+	 * Este trecho de código define uma função chamada getAcertou que retorna um valor booleano. A função não recebe nenhum parâmetro.
 	 */
 	getAcertou(): boolean {
 		return this.acertou
 	}
 
 	/**
-	 * Returns true if any resposta in this.respostas is revealed, otherwise returns false.
+	 * Retorna true se alguma resposta no array respostas estiver revelada, caso contrário, retorna false.
 	 *
-	 * @return {boolean} true if any resposta is revealed, otherwise false
+	 * @return {boolean} True se alguma resposta estiver revelada, caso contrário, false.
 	 *
-	 * This code defines a function called getRepondida that returns a boolean value. The function does not take any parameters.
+	 * Este trecho de código define uma função chamada getRepondida que retorna um valor booleano. A função não recebe nenhum parâmetro.
 	 */
 	getRepondida(): boolean {
 		for (let resposta of this.respostas) {
@@ -87,12 +90,23 @@ export default class MQuestao {
 		return false
 	}
 
-	/**
-	 * Returns an object with id, enunciado, respostas, and acertou properties.
-	 *
-	 * @return {object} The object containing id, enunciado, respostas, and acertou properties.
-	 */
+    /**
+     * Embaralha as respostas da questão e retorna uma nova instância de MQuestao.
+     *
+     * @return {MQuestao} Uma nova instância de MQuestao com as respostas embaralhadas.
+     */
+    embaralharRespostas(): MQuestao {
+        let respostasEmbaralhadas = embaralhar(this.respostas)
+        return new MQuestao(this.id, this.enunciado, respostasEmbaralhadas, this.acertou)
+    }
 
+	/**
+	 * Converte o objeto MQuestao para um objeto JavaScript padrão.
+	 *
+	 * @return {Object} Um objeto JavaScript padrão representando o objeto MQuestao.
+	 *
+	 * Este trecho de código define uma função chamada `paraObjeto` que converte a instância atual da classe `MQuestao` para um objeto JavaScript padrão. A função retorna um objeto com as propriedades `id`, `enunciado` e `respostas`, que correspondem aos valores respectivos das propriedades do objeto `MQuestao`.
+	 */
 	// Nesse projeto funciona sem o paraObjetos
 	paraObjeto() {
 		return {
