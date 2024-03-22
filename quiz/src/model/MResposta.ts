@@ -1,16 +1,47 @@
+/**
+ * Este código TypeScript define uma classe MResposta que representa uma resposta.
+ * A classe possui as seguintes propriedades: valor (string), certa (booleana) e revelada (booleana).
+ *
+ * A classe possui vários métodos:
+ *
+ * Construtor: Este método é usado para criar uma nova instância da classe MResposta.
+ * Ele recebe três parâmetros: valor (string), certa (booleana) e revelada (booleana).
+ * Ele atribui esses valores às respectivas propriedades do objeto.
+ *
+ * static certa(valor: string): MResposta:
+ * Este método estático cria um novo objeto MResposta com o valor fornecido e define
+ * seu status certa como true.
+ *
+ * static errada(valor: string): MResposta:
+ * Este método também cria um novo objeto MResposta, mas define seu status certa como false.
+ *
+ * getValor(): string:
+ * Este método retorna o valor da propriedade valor.
+ *
+ * getCerta(): boolean:
+ * Este método retorna o valor da propriedade certa.
+ *
+ * getRevelada(): boolean:
+ * Este método também retorna o valor da propriedade revelada.
+ *
+ * paraObjetos():
+ * Este método retorna um objeto com as propriedades valor, certa e revelada.
+ * Observação: O método paraObjetos() está comentado com uma nota dizendo que não é
+ * usado neste projeto.
+ */
 export default class MResposta {
     private valor: string
     private certa: boolean
     private revelada: boolean
 
     /**
-     * Constructor for creating a new instance of the class.
+     * Construtor para criar uma nova instância da classe.
      *
-     * @param {string} valor - the value parameter
-     * @param {boolean} certa - the certa parameter
-     * @param {boolean} revelada - the revelada parameter
+     * @param {string} valor - o valor do parâmetro
+     * @param {boolean} certa - o valor do parâmetro
+     * @param {boolean} revelada - o valor do parâmetro
      *
-     * This code defines a constructor called Resposta that takes in three parameters: valor (a string), certa (a boolean), and revelada (a boolean). The constructor assigns these values to the corresponding properties of the object.
+     * Esta função cria um construtor chamado Resposta que recebe três parâmetros: valor (uma string), certa (um boolean) e revelada (um boolean). O construtor atribui esses valores às propriedades correspondentes do objeto.
      */
     constructor(
         valor: string,
@@ -23,24 +54,22 @@ export default class MResposta {
     }
 
     /**
-     * Creates a new MResposta object with the given valor and sets its status to true.
+     * Cria um novo objeto MResposta com o valor passado e define sua status como true.
      *
-     * @param {string} valor - the value to be set in the MResposta object
-     * @return {MResposta} the newly created MResposta object
+     * @param {string} valor - o valor a ser setado no objeto MResposta
+     * @return {MResposta} o objeto MResposta criado
      *
-     * This code defines a function called certa that takes in a string value and returns a MResposta object. The function sets the 'certa' property of the object to true.
+     * Esta função define certa como true.
      */
     static certa(valor: string): MResposta {
         return new MResposta(valor, true)
     }
 
     /**
-     * A description of the entire function.
+     * Define certa como false.
      *
-     * @param {string} valor - description of parameter
-     * @return {MResposta} description of return value
-     *
-     * This code defines a function called errada that takes in a string value and returns a MResposta object. The function sets the 'certa' property of the object to false.
+     * @param {string} valor - o valor a ser setado no objeto MResposta
+     * @return {MResposta} o objeto MResposta criado
      */
     static errada(valor: string): MResposta {
         return new MResposta(valor, false)
@@ -48,42 +77,36 @@ export default class MResposta {
 
 
     /**
-     * Get the value.
+     * Retorna o valor.
      *
-     * @return {string} the value
-     *
-     * This code defines a function called getValor that returns a string value. The function does not take any parameters.
+     * @return {string} o valor
      */
     getValor(): string {
         return this.valor
     }
 
     /**
-     * A description of the entire function.
+     * Retorna o valor da propriedade 'certa'.
      *
-     * @return {boolean} description of return value
-     *
-     * This code defines a function called getCerta that returns a boolean value. The function does not take any parameters.
+     * @return {boolean} o valor da propriedade 'certa'
      */
     getCerta(): boolean {
         return this.certa
     }
 
     /**
-     * Get the value of the 'revelada' property.
+     * Retorna o valor da propriedade 'revelada'.
      *
-     * @return {boolean} The value of the 'revelada' property.
-     *
-     * This code defines a function called getRevelada that returns a boolean value. The function does not take any parameters.
+     * @return {boolean} o valor da propriedade 'revelada'
      */
     getRevelada(): boolean {
         return this.revelada
     }
 
     /**
-     * A function that generates an object with the properties valor, certa, and revelada.
+     * Gera um objeto com as propriedades valor, certa e revelada.
      *
-     * @return {object} An object with the properties valor, certa, and revelada
+     * @return {object} Um objeto com as propriedades valor, certa e revelada
      */
 
     // Nesse projeto funciona sem o paraObjetos
