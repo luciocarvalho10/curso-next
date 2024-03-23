@@ -104,17 +104,27 @@ export default class MResposta {
     }
 
     /**
+     * Revela o objeto MResposta criando uma nova instância com o mesmo valor e propriedades certas,
+     * e configurando o sinalizador de revelação como verdadeiro.
+     *
+     * @return {MResposta} O objeto MResposta revelado.
+     */
+    revelar() {
+        return new MResposta(this.getValor(), this.getCerta(), true)
+    }
+
+    /**
      * Gera um objeto com as propriedades valor, certa e revelada.
      *
      * @return {object} Um objeto com as propriedades valor, certa e revelada
      */
 
     // Nesse projeto funciona sem o paraObjetos
-    paraObjetos() {
+    paraObjeto() {
         return {
-            valor: this.getValor(),
-            certa: this.getCerta(),
-            revelada: this.getRevelada()
+            valor: this.valor,
+            certa: this.certa,
+            revelada: this.revelada,
         }
     }
 }

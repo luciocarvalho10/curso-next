@@ -2,7 +2,38 @@ import { embaralhar } from "@/functions/arrays"
 import MResposta from '@/model/MResposta'
 
 /**
- * Uma classe que representa uma questão em um quiz.
+ * Este código TypeScript define uma classe MQuestao que representa uma questão em um quiz.
+ * A classe possui as seguintes propriedades: id (number), enunciado (string), respostas (array de MResposta), e acertou (booleano).
+ *
+ * A classe possui vários métodos:
+ *
+ * Construtor: Este método é usado para criar uma nova instância da classe MQuestao.
+ * Ele recebe quatro parâmetros: id (number), enunciado (string), respostas (array de MResposta), e acertou (booleano).
+ * Ele atribui esses valores às respectivas propriedades do objeto.
+ *
+ * getId(): number:
+ * Este método retorna o valor da propriedade id.
+ *
+ * getEnunciado(): string:
+ * Este método retorna o valor da propriedade enunciado.
+ *
+ * getRespostas(): MResposta[]:
+ * Este método retorna o valor da propriedade respostas.
+ *
+ * getAcertou(): boolean:
+ * Este método retorna o valor da propriedade acertou.
+ *
+ * getRepondida(): boolean:
+ * Este método retorna true se alguma resposta no array respostas estiver revelada, caso contrário, retorna false.
+ *
+ * responderCom(indice: number): MQuestao:
+ * Este método permite responder à questão com base no índice fornecido.
+ *
+ * embaralharRespostas(): MQuestao:
+ * Este método embaralha as respostas da questão e retorna uma nova instância de MQuestao.
+ *
+ * paraObjeto(): Object:
+ * Este método converte o objeto MQuestao para um objeto JavaScript padrão.
  */
 export default class MQuestao {
 	private id: number
@@ -84,11 +115,26 @@ export default class MQuestao {
 	 * Este trecho de código define uma função chamada getRepondida que retorna um valor booleano. A função não recebe nenhum parâmetro.
 	 */
 	getRepondida(): boolean {
-		for (let resposta of this.respostas) {
+		for (let resposta of this.getRespostas()) {
 			if (resposta.getRevelada()) return true
 		}
 		return false
 	}
+
+    /**
+     * Permite ao usuário responder a uma questão com base no índice da resposta escolhida.
+     * Atualiza a questão com as respostas reveladas e marca a questão como acertada ou não.
+     *
+     * @param {number} indice - O índice da resposta escolhida pelo usuário.
+     * @return {MQuestao} Uma nova instância de MQuestao com as respostas atualizadas e o estado de acerto correspondente.
+     */
+    responderCom(indice: number): MQuestao {
+        const acertou = this.respostas[indice]?.certa
+        const respostas = this.respostas.map((resposta, i) =>
+            indice === i || resposta.certa ? resposta.revelar() : resposta
+        )
+        return new MQuestao(this.getId(), this.getEnunciado(), respostas, acertou)
+    }
 
     /**
      * Embaralha as respostas da questão e retorna uma nova instância de MQuestao.
@@ -107,15 +153,13 @@ export default class MQuestao {
 	 *
 	 * Este trecho de código define uma função chamada `paraObjeto` que converte a instância atual da classe `MQuestao` para um objeto JavaScript padrão. A função retorna um objeto com as propriedades `id`, `enunciado` e `respostas`, que correspondem aos valores respectivos das propriedades do objeto `MQuestao`.
 	 */
-	// Nesse projeto funciona sem o paraObjetos
 	paraObjeto() {
 		return {
-			id: this.getId(),
-			enunciado: this.getEnunciado(),
-			respostas: this.getRespostas(),
+            id: this.getId(),
 			acertou: this.getAcertou(),
-			// Não funciona
-			// respostas: this.respostas.map(resposta => resposta.paraObjeto()),
+            respondida: this.getRepondida(),
+			enunciado: this.getEnunciado(),
+			respostas: this.respostas.map(resposta => resposta.paraObjeto()),
 		}
 	}
 }
