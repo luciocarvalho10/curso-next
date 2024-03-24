@@ -10,6 +10,15 @@ export default function Quiz() {
 		MResposta.certa('Matilha'),
 	])
     return (
-        <Questao questao={questao} />
-    )
+		<div
+			style={{
+				display: 'flex',
+				justifyContent: 'center',
+				alignItems: 'center',
+				height: '100vh',
+			}}
+        >
+			<Questao questao={questao} />
+		</div>
+	)
 }

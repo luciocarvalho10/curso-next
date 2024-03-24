@@ -1,16 +1,17 @@
 import styles from '@/styles/Questao.module.css'
 import MQuestao from '@/model/MQuestao'
+import Enunciado from '@/components/Enunciado'
 
-interface QuestaoProps {
+interface IQuestaoProps {
     questao: MQuestao
 }
 
-export default function Questao(props: QuestaoProps) {
+export default function Questao(props: IQuestaoProps) {
     const { questao } = props
 
     return (
-        <div className={styles.questao}>
-            <h1>Questão</h1>
+        <div className={styles.main}>
+            <Enunciado enunciado={questao.getEnunciado()} />
         </div>
     )
 }
