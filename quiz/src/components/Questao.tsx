@@ -7,21 +7,29 @@ interface IQuestaoProps {
     questao: MQuestao
 }
 
+function gerarCorHexadecimal() {
+	let cor = '#'
+	for (let i = 0; i < 6; i++) {
+		const valor = Math.floor(Math.random() * 16)
+		cor += valor.toString(16)
+	}
+	return cor
+}
+
 export default function Questao(props: IQuestaoProps) {
     const { questao } = props
 
     function renderizarRespostas() {
         return questao.getRespostas().map((resposta, i) => {
             return (
-                <Resposta
-                    // key={`${questao.getId()}-${i}`}
-                    key={questao.getId() % i * Math.random()}
-                    resposta={resposta}
-                    indice={i}
-                    letra={String.fromCharCode(65 + i)}
-                    corFundoLetra='#F2C866'
-                />
-            )
+				<Resposta
+					key={(questao.getId() % i) * Math.random()}
+					resposta={resposta}
+					indice={i}
+					letra={String.fromCharCode(65 + i)}
+					corFundoLetra={gerarCorHexadecimal()}
+				/>
+			)
         })
     }
 
