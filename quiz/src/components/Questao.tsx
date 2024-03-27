@@ -5,6 +5,7 @@ import Resposta from '@/components/Resposta'
 
 interface IQuestaoProps {
     questao: MQuestao
+    respostaFornecida: (indice: number) => void
 }
 
 function gerarCorHexadecimal() {
@@ -28,6 +29,7 @@ export default function Questao(props: IQuestaoProps) {
 					indice={i}
 					letra={String.fromCharCode(65 + i)}
 					corFundoLetra={gerarCorHexadecimal()}
+                    respostaFornecida={props.respostaFornecida}
 				/>
 			)
         })

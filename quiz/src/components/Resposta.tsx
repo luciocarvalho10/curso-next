@@ -6,12 +6,12 @@ interface IRespostaProps {
     indice: number
     letra: string
     corFundoLetra: string
-    // respostaFornecida: (indice: number) => void
+    respostaFornecida: (indice: number) => void
 }
 
 export default function Resposta(props: IRespostaProps) {
     return (
-		<div className={style.cartao}>
+		<div className={style.cartao} onClick={() => props.respostaFornecida(props.indice)} >
 			<div className={style.conteudo}>
 				<div className={style.frente}>
 					<div className={style.letra} style={{ backgroundColor: props.corFundoLetra }}>
