@@ -2,6 +2,7 @@ import { useState } from 'react'
 import Questao from '@/components/Questao'
 import MQuestao from '@/model/MQuestao'
 import MResposta from '@/model/MResposta'
+import Botao from '@/components/Botao'
 
 const questaoExemplo = new MQuestao(203, 'Qual é o coletivo de cães?', [
     MResposta.errada('Manada'),
@@ -27,6 +28,7 @@ export default function Quiz() {
 		<div
 			style={{
 				display: 'flex',
+                flexDirection: 'column',
 				justifyContent: 'center',
 				alignItems: 'center',
 				height: '100vh',
@@ -37,6 +39,7 @@ export default function Quiz() {
 				respostaFornecida={respostaFornecida}
 				tempooEsgotado={tempooEsgotado}
 			/>
+            <Botao texto='Próximo' href='/resultado' />
 		</div>
 	)
 }
