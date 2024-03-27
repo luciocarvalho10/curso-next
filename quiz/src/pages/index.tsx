@@ -14,8 +14,13 @@ export default function Quiz() {
     const [questao, setQuestao] = useState(questaoExemplo)
 
     function respostaFornecida(indice: number) {
-        console.log('Usuário respondeu: ', indice)
         setQuestao(questao.responderCom(indice))
+    }
+
+    function tempooEsgotado() {
+        if (questao.getNaoRepondida()) {
+            setQuestao(questao.responderCom(-1))
+        }
     }
 
     return (
@@ -25,9 +30,12 @@ export default function Quiz() {
 				justifyContent: 'center',
 				alignItems: 'center',
 				height: '100vh',
-			}}
-        >
-			<Questao questao={questao} respostaFornecida={respostaFornecida} />
+			}}>
+			<Questao
+				questao={questao}
+				respostaFornecida={respostaFornecida}
+				tempooEsgotado={tempooEsgotado}
+			/>
 		</div>
 	)
 }

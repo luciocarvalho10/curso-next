@@ -122,6 +122,17 @@ export default class MQuestao {
 	}
 
     /**
+     * Retorna true se a questão ainda não foi respondida, caso contrário, retorna false.
+     *
+     * @return {boolean} True se a questão ainda não foi respondida, caso contrário, false.
+     *
+     * Este trecho de código define uma função chamada getNaoRepondida que retorna um valor booleano. A função não recebe nenhum parâmetro.
+     */
+    getNaoRepondida(): boolean {
+        return !this.getRepondida()
+    }
+
+    /**
      * Permite ao usuário responder a uma questão com base no índice da resposta escolhida.
      * Atualiza a questão com as respostas reveladas e marca a questão como acertada ou não.
      *
@@ -129,9 +140,9 @@ export default class MQuestao {
      * @return {MQuestao} Uma nova instância de MQuestao com as respostas atualizadas e o estado de acerto correspondente.
      */
     responderCom(indice: number): MQuestao {
-        const acertou = this.respostas[indice]?.certa
+        const acertou = this.respostas[indice]?.getCerta()
         const respostas = this.respostas.map((resposta, i) =>
-            indice === i || resposta.certa ? resposta.revelar() : resposta
+            indice === i || resposta.getCerta() ? resposta.revelar() : resposta
         )
         return new MQuestao(this.getId(), this.getEnunciado(), respostas, acertou)
     }
