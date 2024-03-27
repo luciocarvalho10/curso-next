@@ -33,6 +33,7 @@ export default function Quiz() {
 			}}>
 			<Questao
 				questao={questao}
+                tempoParaResposta={5}
 				respostaFornecida={respostaFornecida}
 				tempooEsgotado={tempooEsgotado}
 			/>

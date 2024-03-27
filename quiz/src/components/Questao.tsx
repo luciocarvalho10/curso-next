@@ -5,6 +5,7 @@ import Resposta from '@/components/Resposta'
 import Temporizador from '@/components/Temporizador'
 
 interface IQuestaoProps {
+    tempoParaResposta?: number
     questao: MQuestao
     respostaFornecida: (indice: number) => void
     tempooEsgotado: () => void
@@ -36,10 +37,13 @@ export default function Questao(props: IQuestaoProps) {
 	}
 
     return (
-        <div className={styles.main}>
-            <Enunciado enunciado={questao.getEnunciado()} />
-            <Temporizador duracao={10} tempoEsgotado={props.tempooEsgotado} />
-            {renderizarRespostas()}
-        </div>
-    )
+		<div className={styles.main}>
+			<Enunciado enunciado={questao.getEnunciado()} />
+			<Temporizador
+				duracao={props.tempoParaResposta ?? 10}
+				tempoEsgotado={props.tempooEsgotado}
+			/>
+			{renderizarRespostas()}
+		</div>
+	)
 }
