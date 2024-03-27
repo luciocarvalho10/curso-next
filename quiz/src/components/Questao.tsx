@@ -8,7 +8,7 @@ interface IQuestaoProps {
     tempoParaResposta?: number
     questao: MQuestao
     respostaFornecida: (indice: number) => void
-    tempooEsgotado: () => void
+    tempoEsgotado: () => void
 }
 
 const corFundoLetras: { [index: string]: string } = {
@@ -41,7 +41,7 @@ export default function Questao(props: IQuestaoProps) {
 			<Enunciado enunciado={questao.getEnunciado()} />
 			<Temporizador
 				duracao={props.tempoParaResposta ?? 10}
-				tempoEsgotado={props.tempooEsgotado}
+				tempoEsgotado={props.tempoEsgotado}
 			/>
 			{renderizarRespostas()}
 		</div>

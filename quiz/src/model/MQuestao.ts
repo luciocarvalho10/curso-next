@@ -114,7 +114,7 @@ export default class MQuestao {
 	 *
 	 * Este trecho de código define uma função chamada getRepondida que retorna um valor booleano. A função não recebe nenhum parâmetro.
 	 */
-	getRepondida(): boolean {
+	getRespondida(): boolean {
 		for (let resposta of this.getRespostas()) {
 			if (resposta.getRevelada()) return true
 		}
@@ -128,8 +128,8 @@ export default class MQuestao {
      *
      * Este trecho de código define uma função chamada getNaoRepondida que retorna um valor booleano. A função não recebe nenhum parâmetro.
      */
-    getNaoRepondida(): boolean {
-        return !this.getRepondida()
+    getNaoRespondida(): boolean {
+        return !this.getRespondida()
     }
 
     /**
@@ -168,7 +168,7 @@ export default class MQuestao {
 		return {
             id: this.getId(),
 			acertou: this.getAcertou(),
-            respondida: this.getRepondida(),
+            respondida: this.getRespondida(),
 			enunciado: this.getEnunciado(),
 			respostas: this.respostas.map(resposta => resposta.paraObjeto()),
 		}
