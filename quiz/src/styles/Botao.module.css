@@ -7,4 +7,10 @@
     padding: 10px 20px;
     margin-top: 40px;
     background-color: #9885FF;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.botao:hover {
+    transform: scale(1.1);
 }
