@@ -21,19 +21,17 @@ export default function Questao(props: IQuestaoProps) {
     const { questao } = props
 
     function renderizarRespostas() {
-        return questao.getRespostas().map((resposta, i) => {
-            return (
-				<Resposta
-					key={(questao.getId() % i) * Math.random()}
-					resposta={resposta}
-					indice={i}
-					letra={String.fromCharCode(65 + i)}
-					corFundoLetra={gerarCorHexadecimal()}
-                    respostaFornecida={props.respostaFornecida}
-				/>
-			)
-        })
-    }
+		return questao.getRespostas().map((resposta, i) =>
+            <Resposta
+                key={(questao.getId() % i) * Math.random()}
+                resposta={resposta}
+                indice={i}
+                letra={String.fromCharCode(65 + i)}
+                corFundoLetra={gerarCorHexadecimal()}
+                respostaFornecida={props.respostaFornecida}
+            />
+		)
+	}
 
     return (
         <div className={styles.main}>
