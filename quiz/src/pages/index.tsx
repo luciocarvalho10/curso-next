@@ -1,8 +1,7 @@
 import { useState } from 'react'
-import Questao from '@/components/Questao'
+import Questionario from '@/components/Questionario'
 import MQuestao from '@/model/MQuestao'
 import MResposta from '@/model/MResposta'
-import Botao from '@/components/Botao'
 
 const questaoExemplo = new MQuestao(203, 'Qual é o coletivo de cães?', [
     MResposta.errada('Manada'),
@@ -11,35 +10,22 @@ const questaoExemplo = new MQuestao(203, 'Qual é o coletivo de cães?', [
     MResposta.certa('Matilha'),
 ])
 
+
 export default function Quiz() {
     const [questao, setQuestao] = useState(questaoExemplo)
 
-    function respostaFornecida(indice: number) {
-        setQuestao(questao.responderCom(indice))
-    }
+    function questaoResposndida(questao: MQuestao) {}
 
-    function tempooEsgotado() {
-        if (questao.getNaoRepondida()) {
-            setQuestao(questao.responderCom(-1))
-        }
-    }
+    function irPraProximoPasso() {}
 
     return (
-		<div
-			style={{
-				display: 'flex',
-                flexDirection: 'column',
-				justifyContent: 'center',
-				alignItems: 'center',
-				height: '100vh',
-			}}>
-			<Questao
-				questao={questao}
-                tempoParaResposta={5}
-				respostaFornecida={respostaFornecida}
-				tempooEsgotado={tempooEsgotado}
-			/>
-            <Botao texto='Próximo' href='/resultado' />
+		<div>
+            <Questionario
+                questao={questao}
+                ultima={true}
+                questaoRespondida={questaoResposndida}
+                irPraProximoPasso={irPraProximoPasso}
+            />
 		</div>
 	)
 }
