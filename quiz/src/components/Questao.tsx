@@ -26,7 +26,7 @@ export default function Questao(props: IQuestaoProps) {
     function renderizarRespostas() {
 		return questao.getRespostas().map((resposta, i) =>
             <Resposta
-                key={(questao.getId() % i) * Math.random()}
+                key={questao.getId() * Math.random()}
                 resposta={resposta}
                 indice={i}
                 letra={letra(i)}
