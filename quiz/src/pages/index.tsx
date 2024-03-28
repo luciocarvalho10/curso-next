@@ -19,14 +19,14 @@ export default function Quiz() {
     async function carregarIdsDasQuestoes() {
         const res = await fetch(`${BASE_URL}/questionario`)
         const idsDasQuestoes = await res.json()
-        console.log(idsDasQuestoes)
         setIdsDasQuestoes(idsDasQuestoes)
     }
 
     async function carregarQuestao(idQuestao: number) {
         const res = await fetch(`${BASE_URL}/questoes/${idQuestao}`)
         const obj = await res.json()
-        console.log(obj)
+        const novaQuestao = MQuestao.criarUsandoObjeto(obj)
+        setQuestao(novaQuestao)
     }
 
     useEffect(() => {

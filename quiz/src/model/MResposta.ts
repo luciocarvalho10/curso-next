@@ -30,101 +30,109 @@
  * usado neste projeto.
  */
 export default class MResposta {
-    private valor: string
-    private certa: boolean
-    private revelada: boolean
+	private valor: string
+	private certa: boolean
+	private revelada: boolean
+
+	/**
+	 * Construtor para criar uma nova instância da classe.
+	 *
+	 * @param {string} valor - o valor do parâmetro
+	 * @param {boolean} certa - o valor do parâmetro
+	 * @param {boolean} revelada - o valor do parâmetro
+	 *
+	 * Esta função cria um construtor chamado Resposta que recebe três parâmetros: valor (uma string), certa (um boolean) e revelada (um boolean). O construtor atribui esses valores às propriedades correspondentes do objeto.
+	 */
+	constructor(valor: string, certa: boolean, revelada = false) {
+		this.valor = valor
+		this.certa = certa
+		this.revelada = revelada
+	}
+
+	/**
+	 * Cria um novo objeto MResposta com o valor passado e define sua status como true.
+	 *
+	 * @param {string} valor - o valor a ser setado no objeto MResposta
+	 * @return {MResposta} o objeto MResposta criado
+	 *
+	 * Esta função define certa como true.
+	 */
+	static certa(valor: string): MResposta {
+		return new MResposta(valor, true)
+	}
+
+	/**
+	 * Define certa como false.
+	 *
+	 * @param {string} valor - o valor a ser setado no objeto MResposta
+	 * @return {MResposta} o objeto MResposta criado
+	 */
+	static errada(valor: string): MResposta {
+		return new MResposta(valor, false)
+	}
+
+	/**
+	 * Retorna o valor.
+	 *
+	 * @return {string} o valor
+	 */
+	getValor(): string {
+		return this.valor
+	}
+
+	/**
+	 * Retorna o valor da propriedade 'certa'.
+	 *
+	 * @return {boolean} o valor da propriedade 'certa'
+	 */
+	getCerta(): boolean {
+		return this.certa
+	}
+
+	/**
+	 * Retorna o valor da propriedade 'revelada'.
+	 *
+	 * @return {boolean} o valor da propriedade 'revelada'
+	 */
+	getRevelada(): boolean {
+		return this.revelada
+	}
+
+	/**
+	 * Revela o objeto MResposta criando uma nova instância com o mesmo valor e propriedades certas,
+	 * e configurando o sinalizador de revelação como verdadeiro.
+	 *
+	 * @return {MResposta} O objeto MResposta revelado.
+	 */
+	revelar() {
+		return new MResposta(this.getValor(), this.getCerta(), true)
+	}
 
     /**
-     * Construtor para criar uma nova instância da classe.
+     * Cria um novo MResposta usando o objeto fornecido.
      *
-     * @param {string} valor - o valor do parâmetro
-     * @param {boolean} certa - o valor do parâmetro
-     * @param {boolean} revelada - o valor do parâmetro
-     *
-     * Esta função cria um construtor chamado Resposta que recebe três parâmetros: valor (uma string), certa (um boolean) e revelada (um boolean). O construtor atribui esses valores às propriedades correspondentes do objeto.
+     * @param {MResposta} resposta - o objeto para criar o novo MResposta
+     * @return {MResposta} o MResposta recém-criado
      */
-    constructor(
-        valor: string,
-        certa: boolean,
-        revelada = false
-    ) {
-        this.valor = valor
-        this.certa = certa
-        this.revelada = revelada
-    }
+    static criarUsandoObjeto(resposta: MResposta): MResposta {
+		return new MResposta(
+			resposta.valor,
+			resposta.certa,
+			resposta.revelada
+		)
+	}
 
-    /**
-     * Cria um novo objeto MResposta com o valor passado e define sua status como true.
-     *
-     * @param {string} valor - o valor a ser setado no objeto MResposta
-     * @return {MResposta} o objeto MResposta criado
-     *
-     * Esta função define certa como true.
-     */
-    static certa(valor: string): MResposta {
-        return new MResposta(valor, true)
-    }
+	/**
+	 * Gera um objeto com as propriedades valor, certa e revelada.
+	 *
+	 * @return {object} Um objeto com as propriedades valor, certa e revelada
+	 */
 
-    /**
-     * Define certa como false.
-     *
-     * @param {string} valor - o valor a ser setado no objeto MResposta
-     * @return {MResposta} o objeto MResposta criado
-     */
-    static errada(valor: string): MResposta {
-        return new MResposta(valor, false)
-    }
-
-
-    /**
-     * Retorna o valor.
-     *
-     * @return {string} o valor
-     */
-    getValor(): string {
-        return this.valor
-    }
-
-    /**
-     * Retorna o valor da propriedade 'certa'.
-     *
-     * @return {boolean} o valor da propriedade 'certa'
-     */
-    getCerta(): boolean {
-        return this.certa
-    }
-
-    /**
-     * Retorna o valor da propriedade 'revelada'.
-     *
-     * @return {boolean} o valor da propriedade 'revelada'
-     */
-    getRevelada(): boolean {
-        return this.revelada
-    }
-
-    /**
-     * Revela o objeto MResposta criando uma nova instância com o mesmo valor e propriedades certas,
-     * e configurando o sinalizador de revelação como verdadeiro.
-     *
-     * @return {MResposta} O objeto MResposta revelado.
-     */
-    revelar() {
-        return new MResposta(this.getValor(), this.getCerta(), true)
-    }
-
-    /**
-     * Gera um objeto com as propriedades valor, certa e revelada.
-     *
-     * @return {object} Um objeto com as propriedades valor, certa e revelada
-     */
-
-    // Nesse projeto funciona sem o paraObjetos
-    paraObjeto() {
-        return {
-            valor: this.valor,
-            certa: this.certa,
-            revelada: this.revelada,
-        }
-    }
+	paraObjeto() {
+		return {
+			valor: this.valor,
+			certa: this.certa,
+			revelada: this.revelada,
+		}
+	}
 }

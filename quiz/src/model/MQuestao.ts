@@ -121,41 +121,71 @@ export default class MQuestao {
 		return false
 	}
 
-    /**
-     * Retorna true se a questão ainda não foi respondida, caso contrário, retorna false.
-     *
-     * @return {boolean} True se a questão ainda não foi respondida, caso contrário, false.
-     *
-     * Este trecho de código define uma função chamada getNaoRepondida que retorna um valor booleano. A função não recebe nenhum parâmetro.
-     */
-    getNaoRespondida(): boolean {
-        return !this.getRespondida()
-    }
+	/**
+	 * Retorna true se a questão ainda não foi respondida, caso contrário, retorna false.
+	 *
+	 * @return {boolean} True se a questão ainda não foi respondida, caso contrário, false.
+	 *
+	 * Este trecho de código define uma função chamada getNaoRepondida que retorna um valor booleano. A função não recebe nenhum parâmetro.
+	 */
+	getNaoRespondida(): boolean {
+		return !this.getRespondida()
+	}
+
+	/**
+	 * Permite ao usuário responder a uma questão com base no índice da resposta escolhida.
+	 * Atualiza a questão com as respostas reveladas e marca a questão como acertada ou não.
+	 *
+	 * @param {number} indice - O índice da resposta escolhida pelo usuário.
+	 * @return {MQuestao} Uma nova instância de MQuestao com as respostas atualizadas e o estado de acerto correspondente.
+	 */
+	responderCom(indice: number): MQuestao {
+		const acertou = this.respostas[indice]?.getCerta()
+		const respostas = this.respostas.map((resposta, i) =>
+			indice === i || resposta.getCerta() ? resposta.revelar() : resposta
+		)
+		return new MQuestao(
+			this.getId(),
+			this.getEnunciado(),
+			respostas,
+			acertou
+		)
+	}
+
+	/**
+	 * Embaralha as respostas da questão e retorna uma nova instância de MQuestao.
+	 *
+	 * @return {MQuestao} Uma nova instância de MQuestao com as respostas embaralhadas.
+	 */
+	embaralharRespostas(): MQuestao {
+		let respostasEmbaralhadas = embaralhar(this.respostas)
+		return new MQuestao(
+			this.id,
+			this.enunciado,
+			respostasEmbaralhadas,
+			this.acertou
+		)
+	}
 
     /**
-     * Permite ao usuário responder a uma questão com base no índice da resposta escolhida.
-     * Atualiza a questão com as respostas reveladas e marca a questão como acertada ou não.
+     * Cria uma nova instância de MQuestao usando um objeto com atributos iguais aos atributos de um MQuestao existente.
      *
-     * @param {number} indice - O índice da resposta escolhida pelo usuário.
-     * @return {MQuestao} Uma nova instância de MQuestao com as respostas atualizadas e o estado de acerto correspondente.
-     */
-    responderCom(indice: number): MQuestao {
-        const acertou = this.respostas[indice]?.getCerta()
-        const respostas = this.respostas.map((resposta, i) =>
-            indice === i || resposta.getCerta() ? resposta.revelar() : resposta
-        )
-        return new MQuestao(this.getId(), this.getEnunciado(), respostas, acertou)
-    }
-
-    /**
-     * Embaralha as respostas da questão e retorna uma nova instância de MQuestao.
+     * @param {MQuestao} questao - O objeto MQuestao para criar uma nova instância.
+     * @return {MQuestao} A nova instância de MQuestao criada.
      *
-     * @return {MQuestao} Uma nova instância de MQuestao com as respostas embaralhadas.
+     * Este trecho de código define uma função chamada `criarUsandoObjeto` que recebe um objeto `questao` como parâmetro e retorna uma nova instância de `MQuestao` com os mesmos atributos do objeto.
      */
-    embaralharRespostas(): MQuestao {
-        let respostasEmbaralhadas = embaralhar(this.respostas)
-        return new MQuestao(this.id, this.enunciado, respostasEmbaralhadas, this.acertou)
-    }
+    static criarUsandoObjeto(questao: MQuestao): MQuestao {
+		const respostas: MResposta[] = questao
+			.respostas
+			.map(r => MResposta.criarUsandoObjeto(r))
+		return new MQuestao(
+			questao.id,
+			questao.enunciado,
+			respostas,
+			questao.acertou
+		)
+	}
 
 	/**
 	 * Converte o objeto MQuestao para um objeto JavaScript padrão.
@@ -166,9 +196,9 @@ export default class MQuestao {
 	 */
 	paraObjeto() {
 		return {
-            id: this.getId(),
+			id: this.getId(),
 			acertou: this.getAcertou(),
-            respondida: this.getRespondida(),
+			respondida: this.getRespondida(),
 			enunciado: this.getEnunciado(),
 			respostas: this.respostas.map(resposta => resposta.paraObjeto()),
 		}
