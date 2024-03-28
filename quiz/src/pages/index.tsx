@@ -15,6 +15,7 @@ const BASE_URL = 'http://localhost:3000/api'
 export default function Quiz() {
     const [idsDasQuestoes, setIdsDasQuestoes] = useState<number[]>([])
     const [questao, setQuestao] = useState<MQuestao>(questaoExemplo)
+    const [respostasCertas, setRespostasCertas] = useState<number>(0)
 
     async function carregarIdsDasQuestoes() {
         const res = await fetch(`${BASE_URL}/questionario`)
@@ -37,7 +38,11 @@ export default function Quiz() {
         idsDasQuestoes.length > 0 && carregarQuestao(idsDasQuestoes[0])
     },[idsDasQuestoes])
 
-    function questaoResposndida(questao: MQuestao) {}
+    function questaoResposndida(questaoRespondida: MQuestao) {
+        setQuestao(questaoRespondida)
+        const acertou = questaoRespondida.getAcertou()
+        setRespostasCertas(respostasCertas + (acertou ? 1 : 0))
+    }
 
     function irPraProximoPasso() {}
 
