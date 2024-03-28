@@ -1,20 +1,15 @@
 import { useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
 import Questionario from '@/components/Questionario'
 import MQuestao from '@/model/MQuestao'
-import MResposta from '@/model/MResposta'
-
-const questaoExemplo = new MQuestao(203, 'Qual é o coletivo de cães?', [
-    MResposta.errada('Manada'),
-    MResposta.errada('Alcateia'),
-    MResposta.errada('Rebanho'),
-    MResposta.certa('Matilha'),
-])
 
 const BASE_URL = 'http://localhost:3000/api'
 
 export default function Quiz() {
+    const router = useRouter()
+
     const [idsDasQuestoes, setIdsDasQuestoes] = useState<number[]>([])
-    const [questao, setQuestao] = useState<MQuestao>(questaoExemplo)
+    const [questao, setQuestao] = useState<MQuestao>()
     const [respostasCertas, setRespostasCertas] = useState<number>(0)
 
     async function carregarIdsDasQuestoes() {
@@ -44,13 +39,37 @@ export default function Quiz() {
         setRespostasCertas(respostasCertas + (acertou ? 1 : 0))
     }
 
-    function irPraProximoPasso() {}
+    function idProximaPergunta() {
+        if(questao) {
+            const proximoindice = idsDasQuestoes.indexOf(questao.getId()) + 1
+			return idsDasQuestoes[proximoindice]
+        }
+    }
+
+    function irPraProximoPasso() {
+        const proximoId = idProximaPergunta()
+        proximoId ? irPraProximaQuestao(proximoId) : finalizar()
+    }
+
+    function irPraProximaQuestao(proximoId: number) {
+        carregarQuestao(proximoId)
+    }
+
+    function finalizar() {
+        router.push({
+            pathname: '/resultado',
+            query: {
+                total: idsDasQuestoes.length,
+                certas: respostasCertas
+            }
+        })
+    }
 
     return (
 		<div>
             <Questionario
                 questao={questao}
-                ultima={true}
+                ultima={idProximaPergunta() === undefined}
                 questaoRespondida={questaoResposndida}
                 irPraProximoPasso={irPraProximoPasso}
             />
