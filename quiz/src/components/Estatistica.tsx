@@ -16,7 +16,7 @@ export default function Estatistica(props: IEstatisticaProps) {
 					backgroundColor: props.corFundo ?? '#FDD60F',
 					color: props.corFonte ?? '#333',
 				}}>
-				{props.valor}
+				{Number.isNaN(props.valor) ? 0 : props.valor}
 			</div>
 
             <div className={styles.texto}>
