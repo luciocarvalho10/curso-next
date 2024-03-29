@@ -26,7 +26,7 @@ export default function Questao(props: IQuestaoProps) {
     function renderizarRespostas() {
 		return questao.getRespostas().map((resposta, i) =>
             <Resposta
-                key={questao.getId() * Math.random()}
+                key={`${questao.getId()}-${i + Math.random()}`}
                 resposta={resposta}
                 indice={i}
                 letra={letra(i)}
@@ -40,6 +40,7 @@ export default function Questao(props: IQuestaoProps) {
 		<div className={styles.main}>
 			<Enunciado enunciado={questao.getEnunciado()} />
 			<Temporizador
+                key={questao.getId()}
 				duracao={props.tempoParaResposta ?? 10}
 				tempoEsgotado={props.tempoEsgotado}
 			/>
