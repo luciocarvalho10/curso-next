@@ -4,7 +4,7 @@ import Questao from '@/components/Questao'
 import Botao from '@/components/Botao'
 
 interface IQuestionarioProps {
-	questao?: MQuestao
+	questao: MQuestao
     ultima: boolean
 	questaoRespondida: (questao: MQuestao) => void
 	irPraProximoPasso: () => void
@@ -13,7 +13,7 @@ interface IQuestionarioProps {
 export default function Questionario(props: IQuestionarioProps) {
 
     function respostaFornecida(indice: number) {
-        if(props.questao?.getNaoRespondida()) {
+        if(props.questao.getNaoRespondida()) {
             props.questaoRespondida(props.questao.responderCom(indice))
         }
     }

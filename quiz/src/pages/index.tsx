@@ -40,10 +40,10 @@ export default function Quiz() {
     }
 
     function idProximaPergunta() {
-        if(questao) {
-            const proximoindice = idsDasQuestoes.indexOf(questao.getId()) + 1
-			return idsDasQuestoes[proximoindice]
-        }
+        if (questao) {
+			const proximoIndice = idsDasQuestoes.indexOf(questao.getId()) + 1
+			return idsDasQuestoes[proximoIndice]
+		}
     }
 
     function irPraProximoPasso() {
@@ -65,14 +65,12 @@ export default function Quiz() {
         })
     }
 
-    return (
-		<div>
-            <Questionario
-                questao={questao}
-                ultima={idProximaPergunta() === undefined}
-                questaoRespondida={questaoResposndida}
-                irPraProximoPasso={irPraProximoPasso}
-            />
-		</div>
-	)
+    return questao ? (
+        <Questionario
+            questao={questao}
+            ultima={idProximaPergunta() === undefined}
+            questaoRespondida={questaoResposndida}
+            irPraProximoPasso={irPraProximoPasso}
+        />
+    ) : false
 }
