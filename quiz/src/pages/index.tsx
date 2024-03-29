@@ -59,7 +59,7 @@ export default function Quiz() {
         router.push({
             pathname: '/resultado',
             query: {
-                total: idsDasQuestoes.length,
+                perguntas: idsDasQuestoes.length,
                 certas: respostasCertas
             }
         })
