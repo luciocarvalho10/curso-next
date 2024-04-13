@@ -11,12 +11,12 @@ export default function MenuLateral() {
 					icone={IconeCasa}
 				/>
 				<MenuItem
-					url='/ajustes'
+					url='/Ajustes'
 					texto='Ajustes'
 					icone={IconeAjuste}
 				/>
 				<MenuItem
-					url='/notificacoes'
+					url='/Notificacoes'
 					texto='Notificações'
 					icone={IconeSino}
 				/>
