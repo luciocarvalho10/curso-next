@@ -1,11 +1,13 @@
 interface IConteudoProps {
-    children?: any
+	children?: any
 }
 
 export default function Conteudo(props: IConteudoProps) {
 	return (
-		<div className={`
+		<div
+			className={`
             flex flex-col mt-7
+            dark:text-gray-200
         `}>
 			{props.children}
 		</div>

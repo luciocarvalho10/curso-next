@@ -12,6 +12,7 @@ export default function Layout(props: ILayoutProps) {
 	return (
 		<div
 			className={`
+            dark
             flex h-screen w-screen
         `}>
 			<MenuLateral />
