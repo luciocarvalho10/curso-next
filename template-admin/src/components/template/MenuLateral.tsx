@@ -1,12 +1,19 @@
 import MenuItem from '@/components/template/MenuItem'
-import { IconeAjuste, IconeCasa, IconeSino } from '@/components/icons'
+import { IconeAjuste, IconeCasa, IconeSair, IconeSino } from '@/components/icons'
 import Logo from '@/components/template/Logo'
 
 export default function MenuLateral() {
     return (
-		<aside>
-			<Logo />
-			<ul>
+		<aside className='flex flex-col'>
+			<div
+				className={`
+                flex flex-col items-center justify-center
+                bg-gradient-to-r from-indigo-500 to-purple-800
+                w-20 h-20
+            `}>
+				<Logo />
+			</div>
+			<ul className="flex-grow">
 				<MenuItem
 					url='/'
 					texto='Início'
@@ -23,6 +30,17 @@ export default function MenuLateral() {
 					icone={IconeSino}
 				/>
 			</ul>
+            <ul>
+				<MenuItem
+					onClick={() => console.log('Sair')}
+					texto='Sair'
+					icone={IconeSair}
+                    className={`
+                        text-red-600
+                        hover:bg-red-400 hover:text-white
+                    `}
+				/>
+            </ul>
 		</aside>
 	)
 }
