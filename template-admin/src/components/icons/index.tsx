@@ -64,14 +64,14 @@ export const IconeSair = (
 	</svg>
 )
 
-export const IconeSol = (
+export const IconeSol = (tamnaho = 'w-6 h-6') => (
 	<svg
 		xmlns='http://www.w3.org/2000/svg'
 		fill='none'
 		viewBox='0 0 24 24'
 		strokeWidth={1.5}
 		stroke='currentColor'
-		className='w-6 h-6'>
+		className={tamnaho}>
 		<path
 			strokeLinecap='round'
 			strokeLinejoin='round'
@@ -80,14 +80,14 @@ export const IconeSol = (
 	</svg>
 )
 
-export const IconeLua = (
+export const IconeLua = (tamanho = 'w-6 h-6') => (
 	<svg
 		xmlns='http://www.w3.org/2000/svg'
 		fill='none'
 		viewBox='0 0 24 24'
 		strokeWidth={1.5}
 		stroke='currentColor'
-		className='w-6 h-6'>
+		className={tamanho}>
 		<path
 			strokeLinecap='round'
 			strokeLinejoin='round'
