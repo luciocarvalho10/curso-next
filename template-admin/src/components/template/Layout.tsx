@@ -1,6 +1,7 @@
 import MenuLateral from '@/components/template/MenuLateral'
 import Cabecalho from '@/components/template/Cabecalho'
 import Conteudo from '@/components/template/Conteudo'
+import useAppData from '@/data/hook/useAppData'
 
 interface ILayoutProps {
 	children?: any
@@ -9,10 +10,12 @@ interface ILayoutProps {
 }
 
 export default function Layout(props: ILayoutProps) {
+    const ctx = useAppData()
+
 	return (
 		<div
 			className={`
-            dark
+            ${ctx.tema}
             flex h-screen w-screen
         `}>
 			<MenuLateral />
