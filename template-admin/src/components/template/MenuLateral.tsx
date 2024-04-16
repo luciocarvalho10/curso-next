@@ -30,12 +30,12 @@ export default function MenuLateral() {
 					icone={IconeCasa}
 				/>
 				<MenuItem
-					url='/Ajustes'
+					url='/ajustes'
 					texto='Ajustes'
 					icone={IconeAjuste}
 				/>
 				<MenuItem
-					url='/Notificacoes'
+					url='/notificacoes'
 					texto='Notificações'
 					icone={IconeSino}
 				/>
