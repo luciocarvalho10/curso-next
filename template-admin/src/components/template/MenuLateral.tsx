@@ -6,8 +6,11 @@ import {
 	IconeSino,
 } from '@/components/icons'
 import Logo from '@/components/template/Logo'
+import useAuth from '@/data/hook/UseAuth'
 
 export default function MenuLateral() {
+    const { logout } = useAuth()
+
 	return (
 		<aside
 			className={`
@@ -42,7 +45,7 @@ export default function MenuLateral() {
 			</ul>
 			<ul>
 				<MenuItem
-					onClick={() => console.log('Sair')}
+					onClick={logout}
 					texto='Sair'
 					icone={IconeSair}
 					className={`
