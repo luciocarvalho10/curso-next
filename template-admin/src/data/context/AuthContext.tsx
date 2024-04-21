@@ -2,7 +2,8 @@ import route from 'next/router'
 import { createContext, useState } from 'react'
 import firebase from '@/firebase/config'
 import IUsuario from '@/model/IUsuario'
-import firebaseAuth from 'firebase/auth'
+import { User as IFirebaseUser } from 'firebase/auth'
+import Cookies from 'js-cookie'
 
 interface IAuthContextProps {
     usuario?: IUsuario
@@ -15,7 +16,7 @@ interface IAuthContextProps {
 
 const AuthContext = createContext<IAuthContextProps>({})
 
-async function usuarioNormalizado(user: firebaseAuth.User): Promise<IUsuario> {
+async function usuarioNormalizado(user: IFirebaseUser): Promise<IUsuario> {
 	const token = await user.getIdToken()
 	return {
 		uid: user.uid,
@@ -25,6 +26,15 @@ async function usuarioNormalizado(user: firebaseAuth.User): Promise<IUsuario> {
 		provedor: user.providerData[0].providerId,
 		imagemUrl: user.photoURL,
 	}
+}
+
+function gerenciarCookie( logado: string ) {
+    if(logado ===) {
+        Cookies.set('admin-template-auth', logado, {
+            expires: 7
+        })
+    }
+
 }
 
 export function AuthProvider({ children }: any) {
