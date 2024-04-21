@@ -34,7 +34,7 @@ export function AuthProvider({ children }: any) {
         const resp = await firebase.auth().signInWithPopup(
             new firebase.auth.GoogleAuthProvider()
         )
-        console.log(resp)
+
         if(resp.user?.email){
             const usuario = await usuarioNormalizado(resp.user)
 			setUsuario(usuario)
