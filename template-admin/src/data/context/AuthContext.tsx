@@ -14,7 +14,7 @@ interface IAuthContextProps {
     logout?: () => Promise<void>
 }
 
-const AuthContext = createContext<IAuthContextProps>({})
+const AuthContext = createContext<IAuthContextProps | any>({})
 
 async function usuarioNormalizado(user: IFirebaseUser): Promise<IUsuario> {
 	const token = await user.getIdToken()
@@ -65,7 +65,35 @@ export function AuthProvider({ children }: any) {
 				.auth()
 				.signInWithPopup(new firebase.auth.GoogleAuthProvider())
 
-			configurarSessao(resp.user)
+			await configurarSessao(resp.user)
+			route.push('/')
+        } finally {
+            setCarregando(false)
+        }
+    }
+
+    async function login(email: string, senha: string) {
+        try {
+            setCarregando(true)
+            const resp = await firebase
+				.auth()
+                .signInWithEmailAndPassword(email, senha)
+
+			await configurarSessao(resp.user)
+			route.push('/')
+        } finally {
+            setCarregando(false)
+        }
+    }
+
+    async function cadastrar(email: string, senha: string) {
+        try {
+            setCarregando(true)
+            const resp = await firebase
+				.auth()
+                .createUserWithEmailAndPassword(email, senha)
+
+			await configurarSessao(resp.user)
 			route.push('/')
         } finally {
             setCarregando(false)
@@ -95,7 +123,9 @@ export function AuthProvider({ children }: any) {
         <AuthContext.Provider value={{
             usuario,
             carregando,
+            cadastrar,
             loginGoogle,
+            login,
             logout,
         }}>
             {children}
