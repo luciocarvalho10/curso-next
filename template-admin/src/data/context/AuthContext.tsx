@@ -86,12 +86,15 @@ export function AuthProvider({ children }: any) {
         if(Cookies.get('admin-template-auth')){
             const cancelar = firebase.auth().onIdTokenChanged(configurarSessao)
 			return () => cancelar()
+        } else {
+            setCarregando(false)
         }
     }, [])
 
     return (
         <AuthContext.Provider value={{
             usuario,
+            carregando,
             loginGoogle,
             logout,
         }}>
