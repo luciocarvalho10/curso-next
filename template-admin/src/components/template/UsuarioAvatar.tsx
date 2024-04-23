@@ -1,6 +1,6 @@
 import useAuth from '@/data/hook/UseAuth'
 import Link from 'next/link'
-import logo from '../../../public/logo.png'
+import logo from '../../../public/images/logo.png'
 
 interface IAvatarUsuarioProps {
 	className?: string
