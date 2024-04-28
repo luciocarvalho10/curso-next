@@ -1,6 +1,29 @@
 import Layout from "@/components/Layout";
+import Tabela from "@/components/Tabela";
+import Cliente from "@/core/Cliente";
 
 export default function Home() {
+    const clientes = [
+        new Cliente('Ana', 22, '1'),
+        new Cliente('Maria', 23, '2'),
+        new Cliente('Pedro', 24, '3'),
+        new Cliente('Joaquim', 25, '4'),
+        new Cliente('Lucas', 26, '5'),
+        new Cliente('Gabriel', 27, '6'),
+        new Cliente('Arthur', 28, '7'),
+        new Cliente('Gabriela', 29, '8'),
+        new Cliente('Vitor', 30, '9'),
+        new Cliente('Vitoria', 31, '10')
+    ]
+
+    function clienteSelecionado(cliente: Cliente) {
+        console.log(cliente.id)
+    }
+
+    function clienteExcluido(cliente: Cliente) {
+        console.log(cliente.id)
+    }
+
   return (
 		<div
 			className={`
@@ -9,7 +32,11 @@ export default function Home() {
         text-white
     `}>
 			<Layout titulo='Cadastro Simples'>
-				<span>Conteúdo</span>
+				<Tabela
+					clientes={clientes}
+					clienteExcluido={clienteExcluido}
+					clienteSelecionado={clienteSelecionado}
+				/>
 			</Layout>
 		</div>
   )
