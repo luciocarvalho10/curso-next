@@ -1,13 +1,13 @@
 //Para mais icones acessar https://heroicons.com/
 
-export const IconeEdicao = (tamanho: string = '6') => (
+export const IconeEdicao = (
 	<svg
 		xmlns='http://www.w3.org/2000/svg'
 		fill='none'
 		viewBox='0 0 24 24'
 		strokeWidth={1.5}
 		stroke='currentColor'
-		className={`w-${tamanho} h-${tamanho}`}>
+		className='w-6 h-6'>
 		<path
 			strokeLinecap='round'
 			strokeLinejoin='round'
@@ -16,14 +16,14 @@ export const IconeEdicao = (tamanho: string = '6') => (
 	</svg>
 )
 
-export const IconeLixeira = (tamanho: string = '6') => (
+export const IconeLixeira = (
 	<svg
 		xmlns='http://www.w3.org/2000/svg'
 		fill='none'
 		viewBox='0 0 24 24'
 		strokeWidth={1.5}
 		stroke='currentColor'
-		className={`w-${tamanho} h-${tamanho}`}>
+		className='w-6 h-6'>
 		<path
 			strokeLinecap='round'
 			strokeLinejoin='round'
