@@ -1,35 +1,36 @@
+import ColecaoCliente from "@/backend/db/ColecaoCliente";
 import Botao from "@/components/Botao";
 import Formulario from "@/components/Formulario";
 import Layout from "@/components/Layout";
 import Tabela from "@/components/Tabela";
 import Cliente from "@/core/Cliente";
-import { useState } from "react";
+import IClienteRepositorio from "@/core/IClienteRepositorio";
+import { useEffect, useState } from "react";
 
 export default function Home() {
+    const clienteRepositorio: IClienteRepositorio = new ColecaoCliente()
+
     const [cliente, setCliente] = useState<Cliente>(Cliente.vazio())
+    const [clientes, setClientes] = useState<Cliente[]>([])
     const [visivel, setVisivel] = useState<'tabela' | 'form'>('tabela')
 
-    const clientes = [
-        new Cliente('Ana', 22, '1'),
-        new Cliente('Maria', 23, '2'),
-        new Cliente('Pedro', 24, '3'),
-        new Cliente('Joaquim', 25, '4'),
-        new Cliente('Lucas', 26, '5'),
-        new Cliente('Gabriel', 27, '6'),
-        new Cliente('Arthur', 28, '7'),
-        new Cliente('Gabriela', 29, '8'),
-        new Cliente('Vitor', 30, '9'),
-        new Cliente('Vitoria', 31, '10')
-    ]
+    useEffect(obterTodos, [])
+
+    function obterTodos() {
+        clienteRepositorio.obterTodos().then(clientes => {
+            setClientes(clientes)
+            setVisivel('tabela')
+        })
+    }
 
     function clienteSelecionado(cliente: Cliente) {
         setCliente(cliente)
         setVisivel('form')
     }
 
-    function clienteExcluido(cliente: Cliente) {
-        console.log(cliente.id)
-
+    async function clienteExcluido(cliente: Cliente) {
+        await clienteRepositorio.excluir(cliente)
+        obterTodos()
     }
 
     function novoCliente() {
@@ -37,7 +38,10 @@ export default function Home() {
 		setVisivel('form')
 	}
 
-    const salvarCliente = (cliente: Cliente) => setVisivel('tabela')
+    async function salvarCliente(cliente: Cliente) {
+        await clienteRepositorio.salvar(cliente)
+        obterTodos()
+    }
     const cancelado = () => setVisivel('tabela')
 
   return (
@@ -68,7 +72,7 @@ export default function Home() {
 					<Formulario
 						cliente={cliente}
 						cancelado={cancelado}
-                        clienteMudou={() =>salvarCliente}
+                        clienteMudou={salvarCliente}
 					/>
 				)}
 			</Layout>
