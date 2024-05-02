@@ -1,50 +1,22 @@
-import ColecaoCliente from "@/backend/db/ColecaoCliente";
-import Botao from "@/components/Botao";
-import Formulario from "@/components/Formulario";
-import Layout from "@/components/Layout";
-import Tabela from "@/components/Tabela";
-import Cliente from "@/core/Cliente";
-import IClienteRepositorio from "@/core/IClienteRepositorio";
-import { useEffect, useState } from "react";
+import Botao from '@/components/Botao'
+import Formulario from '@/components/Formulario'
+import Layout from '@/components/Layout'
+import Tabela from '@/components/Tabela'
+import useClientes from '@/hooks/useClientes'
 
 export default function Home() {
-    const clienteRepositorio: IClienteRepositorio = new ColecaoCliente()
+	const {
+		novoCliente,
+		excluirCliente,
+		selecionarCliente,
+		salvarCliente,
+		exibirTabela,
+		cliente,
+		clientes,
+        tabelaVisivel
+	} = useClientes()
 
-    const [cliente, setCliente] = useState<Cliente>(Cliente.vazio())
-    const [clientes, setClientes] = useState<Cliente[]>([])
-    const [visivel, setVisivel] = useState<'tabela' | 'form'>('tabela')
-
-    useEffect(obterTodos, [])
-
-    function obterTodos() {
-        clienteRepositorio.obterTodos().then(clientes => {
-            setClientes(clientes)
-            setVisivel('tabela')
-        })
-    }
-
-    function clienteSelecionado(cliente: Cliente) {
-        setCliente(cliente)
-        setVisivel('form')
-    }
-
-    async function clienteExcluido(cliente: Cliente) {
-        await clienteRepositorio.excluir(cliente)
-        obterTodos()
-    }
-
-    function novoCliente() {
-		setCliente(Cliente.vazio())
-		setVisivel('form')
-	}
-
-    async function salvarCliente(cliente: Cliente) {
-        await clienteRepositorio.salvar(cliente)
-        obterTodos()
-    }
-    const cancelado = () => setVisivel('tabela')
-
-  return (
+	return (
 		<div
 			className={`
                 flex flex-col justify-center items-center h-screen
@@ -52,7 +24,7 @@ export default function Home() {
                 text-white
             `}>
 			<Layout titulo='Cadastro Simples'>
-				{visivel === 'tabela' ? (
+				{tabelaVisivel ? (
 					<>
 						<div className='flex justify-end'>
 							<Botao
@@ -64,18 +36,18 @@ export default function Home() {
 						</div>
 						<Tabela
 							clientes={clientes}
-							clienteExcluido={clienteExcluido}
-							clienteSelecionado={clienteSelecionado}
+							clienteExcluido={excluirCliente}
+							clienteSelecionado={selecionarCliente}
 						/>
 					</>
 				) : (
 					<Formulario
 						cliente={cliente}
-						cancelado={cancelado}
-                        clienteMudou={salvarCliente}
+						cancelado={exibirTabela}
+						clienteMudou={salvarCliente}
 					/>
 				)}
 			</Layout>
 		</div>
-  )
+	)
 }
